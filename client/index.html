@@ -18,9 +18,9 @@
     <main>
         <form action="submit" id="diary-entry">
             <label for="category">Category: </label>
-            <input type="text" name="category" class="input-boxes" id="category">
+            <input type="text" name="category" class="input-boxes" id="category-box">
             <label for="text"> Diary entry: </label>
-            <input type="text" name="text" class="input-boxes" id="text">
+            <input type="text" name="text" class="input-boxes" id="text-box">
             <input
                 class=""
                 type="submit"
@@ -29,8 +29,15 @@
                 id="sign-up-button"
             />
         </form>
+        <h2></h2>
         <hr />
-        <button>See all entries</button>
+        <button href="">See all entries</button>
+
+        <div id="diary">
+            <h2 id="category"></h2>
+            <p id="text"></p>
+            <p id="date"></p>
+        </div>
 
         
 <!-- 
