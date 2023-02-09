@@ -1,0 +1,35 @@
+body{
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 4;
+    font-size: 18px;
+    color: #3f3e3e;
+    padding: 0px 10px
+}
+
+h1,h2,h3 {
+    line-height: 1.2
+}
+
+fieldset {
+    border: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+}
+
+#input-boxes {
+    height: 50px;
+}
+
+button {
+    flex: auto;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 210px;
+    border-radius: 20px;
+}
