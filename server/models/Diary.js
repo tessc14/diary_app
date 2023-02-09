@@ -2,17 +2,16 @@ const db = require('../database/connect')
 
 class Diary {
 
-    constructor ({ diary_id, diary_category, diary_text, diary_date, diary_time }) {
+    constructor ({ diary_id, diary_category, diary_text, diary_date }) {
         this.id = diary_id;
         this.category = diary_category;
         this.text = diary_text;
         this.date = diary_date;
-        this.time = diary_time;
     }
 
     static async getAll() {
-        const response = await db.query("SELECT diary_id, diary_category, diary_text, diary_date, diary_time FROM diary ORDER BY diary_name;");
-        return response.rows.map(g => new Snack(g));
+        const response = await db.query("SELECT diary_id, diary_category, diary_text, diary_date FROM diary ORDER BY diary_id;");
+        return response.rows.map(g => new Diary(g));
     }
 
     static async getOneById(id) {
@@ -24,15 +23,15 @@ class Diary {
     }
 
     static async create(data) {
-        const { diary_category, diary_text } = data;
-        const response = await db.query('INSERT INTO diary (diary_category, diary_text) VALUES ($1, $2) RETURNING *;', [ diary_category, diary_text ]);
+        const { diary_category, diary_text, diary_date } = data;
+        const response = await db.query('INSERT INTO diary (diary_category, diary_text, diary_date) VALUES ($1, $2, $3) RETURNING *;', [ diary_category, diary_text, diary_date ]);
 
-        return response.rows.map(w => new Snack(w))
+        return response.rows.map(w => new Diary(w))
     }
 
     async update(data) {
         const response = await db.query("UPDATE diary SET diary_text = $1 WHERE diary_id = $2 RETURNING diary_id, diary_text;",
-            [ this.votes + data.votes, this.id ]);
+            [ data.diary_text, this.id ]);
         if (response.rows.length != 1) {
             throw new Error("Unable to update entry.")
         }
